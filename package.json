@@ -1,0 +1,38 @@
+{
+  "name": "cypress-udemy-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "open": "cypress open",
+    "test-electron": "cypress run",
+    "smoke-test": "cypress run --spec \"cypress\\e2e\\smokeTest\\*.cy.js\"",
+    "regression-test": "cypress run --spec \"cypress\\e2e\\regressionTest\\RegressionTest.cy.js\"",
+    "test-headed": "cypress run --headed",
+    "test-chrome": "cypress run --browser chrome",
+    "test-chrome-specific": "cypress run --spec \"cypress\\e2e\\HooksApplication.cy.js\" --browser chrome",
+    "test-chrome-headed": "cypress run --browser chrome --headed",
+    "regression-test-chrome": "cypress run --spec \"cypress\\e2e\\regressionTest\\RegressionTest.cy.js\" --browser chrome",
+    "test-dashboard": "npx cypress run --record --key 390255fd-1c06-4e97-9898-ec5d2fb33022",
+    "scripts": "cypress run",
+    "clean:reports": "rmdir /S /Q cypress\\reports && mkdir cypress\\reports && mkdir cypress\\reports\\mochareports",
+    "pretest": "npm run clean:reports",
+    "combine-reports": "mochawesome-merge ./cypress/reports/mocha/mocha*.json > cypress/reports/mochareports/report.json",
+    "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
+    "posttest": "npm run combine-reports && npm run generate-report",
+    "test": "npm run scripts || npm run posttest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.7.1",
+    "cypress-multi-reporters": "^1.6.4",
+    "mocha": "^10.3.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0",
+    "neat-csv": "^5.2.0",
+    "xlsx": "^0.18.5"
+  }
+}
