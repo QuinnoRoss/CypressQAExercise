@@ -5,19 +5,21 @@ import QAExercisePage from "./pages/qaExercisePage"
 describe('User login', function () {
 
     before(function () {
+        cy.fixture('telusData.json').as('data')
         cy.clearAllCookies()
         cy.visit('https://www.telusinternational.ai/cmp')
+
     })
 
     const qaExercisePage = new QAExercisePage()
 
     it('Login functionality', function () {
         //Populating the email address
-        qaExercisePage.enterEmail('velandresq@gmail.com')
+        qaExercisePage.enterEmail(this.data.validEmail)
         //Tap the continue button
         qaExercisePage.clickContinue()
         //Populating the password
-        qaExercisePage.enterPassword('Test12345!!!!!')
+        qaExercisePage.enterPassword(this.data.validPassword)
         //Tap the sign-in button
         qaExercisePage.clickSignIn()
     })
